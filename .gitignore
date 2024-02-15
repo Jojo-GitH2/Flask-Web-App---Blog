@@ -1,0 +1,11 @@
+__pycache__/
+.venv/
+*.db
+*.sqlite3
+*.pyc
+*.pyo
+*.pyd
+*.tar.gz
+# SQLite autoconf
+sqlite-autoconf-3450100/
+
