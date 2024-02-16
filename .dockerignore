@@ -1,0 +1,21 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+
+# Environments
+.venv/
+
+# SQLite autoconf
+sqlite-autoconf-3450100/
+
+# SQLite database
+*.db
+
+# Tarball files
+*.tar.gz
+
+# Git files
+.git*
+
+**/*.pyc
+
+terraform

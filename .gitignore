@@ -8,4 +8,8 @@ __pycache__/
 *.tar.gz
 # SQLite autoconf
 sqlite-autoconf-3450100/
-.dockerignore
+.terraform/
+.terraform*
+*.tfstate
+*.tfstate.backup
+*.tfvars
