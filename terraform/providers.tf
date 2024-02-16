@@ -19,5 +19,12 @@ provider "azurerm" {
 
 provider "kubernetes" {
   # Configuration options
+  host                   = module.aks_cluster.kube_config.host
+  username               = module.aks_cluster.kube_config.username
+  password               = module.aks_cluster.kube_config.password
+  client_certificate     = base64decode(module.aks_cluster.kube_config.client_certificate)
+  client_key             = base64decode(module.aks_cluster.kube_config.client_key)
+  cluster_ca_certificate = base64decode(module.aks_cluster.kube_config.cluster_ca_certificate)
+
 
 }
