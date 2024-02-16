@@ -29,5 +29,5 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/flaskblog-app: ${{ github.sha }}
+          tags: ${{ secrets.DOCKER_USERNAME }}/flaskblog-app:${{ github.sha }}
           labels: ${{ steps.metadata.outputs.labels }}
