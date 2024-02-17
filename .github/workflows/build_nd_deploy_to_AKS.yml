@@ -54,7 +54,9 @@ jobs:
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
           # allow-no-subscriptions: true
-
+      
+      - name: Echo TFVARS
+        run: echo $TFVARS > .env    
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v3
         with:
@@ -72,6 +74,6 @@ jobs:
         run: terraform validate -no-color
       - name: Terraform Plan
         id: plan
-        run: terraform plan -no-color -out=plan.tfplan  -var='docker_image=${{ secrets.DOCKER_USERNAME }}/flaskblog-app:${{ github.sha }}' -input=false --var-file=$TFVARS
+        run: terraform plan -no-color -out=plan.tfplan  -var='docker_image=${{ secrets.DOCKER_USERNAME }}/flaskblog-app:${{ github.sha }}' -input=false --var-file=./.env
       # - name: Terraform Apply
       #   run: terraform apply -auto-approve
