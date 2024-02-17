@@ -68,6 +68,6 @@ jobs:
         run: terraform validate -no-color
       - name: Terraform Plan
         id: plan
-        run: terraform plan -no-color -out=tfplan -var="docker_image=${{ secrets.DOCKER_USERNAME }}/flaskblog-app:${{ github.sha }}" -var-file=${{ secrets.TFVARS }}
+        run: terraform plan -no-color -out=tfplan  -var-file=${{ secrets.TFVARS }}
       # - name: Terraform Apply
       #   run: terraform apply -auto-approve
