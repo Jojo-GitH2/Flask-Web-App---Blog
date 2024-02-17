@@ -41,6 +41,8 @@ jobs:
     name: Deploy to AKS with Terraform
     runs-on: ubuntu-latest
     needs: build
+    env:
+      TFVARS: ${{ vars.TFVARS}}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -68,7 +70,7 @@ jobs:
         run: terraform validate -no-color
       - name: Terraform Plan
         id: plan
-        run: terraform plan -no-color -out=tfplan  -var-file=${{ env.TFVARS }}
+        run: terraform plan -no-color -out=tfplan  -var-file=$TFVARS -var="docker_image=${{ secrets.DOCKER_USERNAME }}/flaskblog-app:${{ github.sha }}"
       # - name: Terraform Apply
       #   run: terraform apply -auto-approve
 # -var="docker_image=${{ secrets.DOCKER_USERNAME }}/flaskblog-app:${{ github.sha }}"
