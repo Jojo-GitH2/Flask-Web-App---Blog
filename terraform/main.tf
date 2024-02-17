@@ -1,16 +1,14 @@
-resource "azurerm_resource_group" "main" {
-  name     = var.resource_group.name
-  location = var.resource_group.location
-  tags     = var.tags
+data "azurerm_resource_group" "main" {
+  name = var.resource_group_name
 }
 
 
 module "aks_cluster" {
-  source         = "./modules/aks"
-  aks_cluster    = var.aks_cluster
-  resource_group = var.resource_group
-  tags           = var.tags
-  depends_on     = [azurerm_resource_group.main]
+  source              = "./modules/aks"
+  aks_cluster         = var.aks_cluster
+  resource_group_name = data.azurerm_resource_group.main.name
+  tags                = data.azurerm_resource_group.main.tags
+  location            = data.azurerm_resource_group.main.location
 }
 
 module "k8s_deployment" {

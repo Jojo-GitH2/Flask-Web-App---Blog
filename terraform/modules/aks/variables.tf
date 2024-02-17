@@ -11,9 +11,15 @@ variable "aks_cluster" {
   })
 }
 
-variable "resource_group" {
-  description = "resource group properties"
-  type        = map(string)
+variable "resource_group_name" {
+  description = "resource group name"
+  type        = string
+
+}
+
+variable "location" {
+  description = "location of the resource group"
+  type        = string
 
 }
 

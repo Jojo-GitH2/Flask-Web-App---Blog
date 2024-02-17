@@ -3,15 +3,9 @@ variable "subscription_id" {
   type        = string
 }
 
-variable "resource_group" {
-  description = "resource group properties"
-  type        = map(string)
-}
-
-variable "tags" {
-  description = "tags to be applied to all resources"
-  type        = map(string)
-
+variable "resource_group_name" {
+  description = "resource group name"
+  type        = string
 }
 
 variable "aks_cluster" {

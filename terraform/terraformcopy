@@ -1,0 +1,23 @@
+subscription_id = "273bafdb-740c-4beb-844d-03c339097737"
+
+resource_group_name = "rg-flaskblog-dev-001"
+
+aks_cluster = {
+  name       = "aks-flaskblog-dev-eastus-001"
+  location   = "eastus"
+  dns_prefix = "blog"
+  default_node_pool = {
+    name       = "npblog001"
+    vm_size    = "Standard_DS2_v2"
+    node_count = 1
+  }
+}
+
+namespace = "python-app"
+
+k8s_deployment = {
+  metadata = {
+    name = "pythonwebapp"
+  }
+  app = "flaskblog"
+}
