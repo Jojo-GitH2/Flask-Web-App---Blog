@@ -59,8 +59,8 @@ jobs:
         uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: 1.7.3
-      - name: Run Trace logging
-        run: export TF_LOG=TRACE
+      - name: Debugging
+        run: env
       - name: Terraform Init
         run: terraform init
       - name: Terraform fmt
@@ -72,6 +72,6 @@ jobs:
         run: terraform validate -no-color
       - name: Terraform Plan
         id: plan
-        run: terraform plan -no-color '-out=tfplan'  --var-file=$TFVARS -var='docker_image=${{ secrets.DOCKER_USERNAME }}/flaskblog-app:${{ github.sha }}'
+        run: terraform plan -no-color -out=plan.tfplan  --var-file=$TFVARS -var='docker_image=${{ secrets.DOCKER_USERNAME }}/flaskblog-app:${{ github.sha }}'
       # - name: Terraform Apply
       #   run: terraform apply -auto-approve
