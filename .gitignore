@@ -13,3 +13,4 @@ sqlite-autoconf-3450100/
 *.tfstate
 *.tfstate.backup
 *.tfvars
+tfplan
