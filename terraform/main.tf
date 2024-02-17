@@ -14,7 +14,9 @@ module "aks_cluster" {
 }
 
 module "k8s_deployment" {
-  source     = "./modules/k8s_deployment"
-  namespace  = var.namespace
-  depends_on = [module.aks_cluster]
+  source         = "./modules/k8s_deployment"
+  namespace      = var.namespace
+  docker_image   = var.docker_image
+  k8s_deployment = var.k8s_deployment
+  depends_on     = [module.aks_cluster]
 }
