@@ -56,7 +56,7 @@ jobs:
           # allow-no-subscriptions: true
       
       - name: Echo TFVARS
-        run: echo $TFVARS > .env    
+        run: echo "${{ vars.TFVARS }}" > .env    
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v3
         with:
