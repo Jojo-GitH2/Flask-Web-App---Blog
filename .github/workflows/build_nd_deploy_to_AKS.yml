@@ -59,6 +59,8 @@ jobs:
         uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: 1.7.3
+      - name: Run Trace logging
+        run: export TF_LOG=TRACE
       - name: Terraform Init
         run: terraform init
       - name: Terraform fmt
