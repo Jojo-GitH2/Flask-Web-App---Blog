@@ -2,10 +2,6 @@ data "github_repository" "main" {
   full_name = var.repository_name
 }
 
-data "github_actions_public_key" "main" {
-  repository = data.github_repository.main.name
-}
-
 resource "github_actions_secret" "secrets" {
   for_each = {
     AZURE_STRORAGE_ACCOUNT = var.storage_account.name
