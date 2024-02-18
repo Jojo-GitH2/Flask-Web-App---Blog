@@ -9,6 +9,9 @@ terraform {
       version = "2.26.0"
     }
   }
+  backend "azurerm" {
+    key = "terraform.tfstate"
+  }
 }
 
 provider "azurerm" {

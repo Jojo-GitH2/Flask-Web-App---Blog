@@ -37,6 +37,7 @@ jobs:
   deploy:
     defaults:
       run:
+        shell: bash
         working-directory: ./terraform
     name: Deploy to AKS with Terraform
     runs-on: ubuntu-latest
