@@ -8,13 +8,12 @@ data "github_actions_public_key" "main" {
 
 resource "github_actions_secret" "secrets" {
   for_each = {
-    # STRORAGE_ACCOUNT    = azurerm_storage_account
-    # RESOURCE_GROUP      = azurerm_storage_account
-    # CONTAINER_NAME      = azurerm_storage_container
-    # ARM_CLIENT_ID       = azuread_service_principal
-    # ARM_CLIENT_SECRET   = azuread_service_principal_password
-    ARM_SUBSCRIPTION_ID = var.subscription_id
-    # ARM_TENANT_ID       = data.azuread_client_config
+    AZURE_STRORAGE_ACCOUNT = var.storage_account.name
+    AZURE_RESOURCE_GROUP   = var.resource_group_name
+    STORAGE_CONTAINER_NAME = var.storage_account.container_name
+    ARM_CLIENT_ID          = var.client_id
+    ARM_SUBSCRIPTION_ID    = var.subscription_id
+    ARM_TENANT_ID          = var.tenant_id
   }
 
   repository      = data.github_repository.main.name
