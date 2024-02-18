@@ -12,7 +12,13 @@ resource "azurerm_federated_identity_credential" "main" {
   issuer              = var.federated_identity.issuer
   parent_id           = azurerm_user_assigned_identity.main.id
   subject             = "repo:${var.repository_name}:ref:refs/heads/main"
+}
 
+resource "azurerm_role_assignment" "main" {
+  count                = length(var.roles)
+  scope                = "/subscriptions/${var.subscription_id}"
+  role_definition_name = var.roles[count.index]
+  principal_id         = azurerm_user_assigned_identity.main.principal_id
 
 }
 

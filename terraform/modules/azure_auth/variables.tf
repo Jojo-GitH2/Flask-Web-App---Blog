@@ -39,3 +39,15 @@ variable "federated_identity" {
   })
 
 }
+
+variable "subscription_id" {
+  description = "The Azure subscription ID"
+  type        = string
+
+}
+
+variable "roles" {
+  description = "The roles to be assigned to the user assigned identity"
+  type        = list(string)
+
+}

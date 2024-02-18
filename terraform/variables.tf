@@ -92,3 +92,9 @@ variable "federated_identity" {
 
 }
 
+variable "roles" {
+  description = "The roles to be assigned to the user assigned identity"
+  type        = list(string)
+
+}
+

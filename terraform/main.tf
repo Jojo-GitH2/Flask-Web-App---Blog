@@ -6,6 +6,8 @@ module "azure_auth" {
   source                      = "./modules/azure_auth"
   user_assigned_identity_name = var.user_assigned_identity_name
   repository_name             = var.repository_name
+  subscription_id             = var.subscription_id
+  roles                       = var.roles
   federated_identity = {
     name     = var.federated_identity.name
     audience = var.federated_identity.audience
