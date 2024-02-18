@@ -42,7 +42,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     env:
-      TFVARS: ${{ vars.TFVARS}}
+      TFVARS: ${{ secrets.TFVARS}}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
