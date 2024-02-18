@@ -41,8 +41,7 @@ jobs:
     name: Deploy to AKS with Terraform
     runs-on: ubuntu-latest
     needs: build
-    env:
-      TFVARS: ${{ secrets.TFVARS}}
+  
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -56,7 +55,7 @@ jobs:
           # allow-no-subscriptions: true
 
       - name: Echo TFVARS
-        run: echo "${{ vars.TFVARS }}" > .env
+        run: echo "${{ secrets.TFVARS }}" > .env
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v3
         with:
@@ -74,7 +73,7 @@ jobs:
         run: terraform validate -no-color
       - name: Terraform Plan
         id: plan
-        run: terraform plan -no-color -out=plan.tfplan  -var 'docker_image=${{ secrets.DOCKER_USERNAME }}/flaskblog-app:${{ github.sha }}' -input=false -var-file=${{ secrets.TFVARS }}
+        run: terraform plan -var 'docker_image=${{ secrets.DOCKER_USERNAME }}/flaskblog-app:${{ github.sha }}' -input=false -var-file=./.env
         # run: terraform plan -no-color -out=plan.tfplan -var="docker_image=jojodocker10/flaskblog-app:latest" -input=false --var-file=./.env
       # - name: Terraform Apply
       #   run: terraform apply -auto-approve
