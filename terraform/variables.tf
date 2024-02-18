@@ -45,3 +45,14 @@ variable "k8s_deployment" {
 
 }
 
+variable "repository_name" {
+  description = "The name of the repository"
+  type        = string
+
+}
+
+variable "PAT_TOKEN" {
+  description = "The Personal Access Token for GitHub"
+  type        = string
+
+}
