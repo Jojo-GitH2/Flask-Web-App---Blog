@@ -4,7 +4,7 @@ data "github_repository" "main" {
 
 resource "github_actions_secret" "secrets" {
   for_each = {
-    AZURE_STRORAGE_ACCOUNT = var.storage_account.name
+    AZURE_STORAGE_ACCOUNT = var.storage_account.name
     AZURE_RESOURCE_GROUP   = var.resource_group_name
     STORAGE_CONTAINER_NAME = var.storage_account.container_name
     ARM_CLIENT_ID          = var.client_id
