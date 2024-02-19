@@ -1,13 +1,13 @@
 resource "azurerm_user_assigned_identity" "main" {
   name                = var.user_assigned_identity_name
-  resource_group_name = var.resource_group.name
-  location            = var.resource_group.location
+  resource_group_name = azurerm_resource_group.main.name
+  location            = azurerm_resource_group.main.location
 
 }
 
 resource "azurerm_federated_identity_credential" "main" {
   name                = var.federated_identity.name
-  resource_group_name = var.resource_group.name
+  resource_group_name = azurerm_resource_group.main.name
   audience            = [var.federated_identity.audience]
   issuer              = var.federated_identity.issuer
   parent_id           = azurerm_user_assigned_identity.main.id
@@ -19,6 +19,7 @@ resource "azurerm_role_assignment" "main" {
   scope                = "/subscriptions/${var.subscription_id}"
   role_definition_name = var.roles[count.index]
   principal_id         = azurerm_user_assigned_identity.main.principal_id
+  depends_on = [ azurerm_federated_identity_credential.main ]
 
 }
 
