@@ -2,7 +2,7 @@ data "github_repository" "main" {
   full_name = var.repository_name
 }
 
-resource "github_actions_secret" "secrets" {
+resource "github_actions_variable" "secrets" {
   for_each = {
     AZURE_STORAGE_ACCOUNT = var.storage_account.name
     AZURE_RESOURCE_GROUP   = var.resource_group_name
@@ -13,7 +13,7 @@ resource "github_actions_secret" "secrets" {
   }
 
   repository      = data.github_repository.main.name
-  secret_name     = each.key
-  plaintext_value = each.value
+  variable_name = each.key
+  value = each.value
 
 }
