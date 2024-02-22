@@ -14,9 +14,9 @@ terraform {
     }
 
   }
-  # backend "azurerm" {
-  #   key = "terraform.tfstate"
-  # }
+  backend "azurerm" {
+    key = "terraform.tfstate"
+  }
 }
 
 provider "azurerm" {
