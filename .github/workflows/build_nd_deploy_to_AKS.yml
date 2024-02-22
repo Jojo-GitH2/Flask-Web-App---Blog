@@ -43,12 +43,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     env:
-      ARM_CLIENT_ID: ${{ vars.ARM_CLIENT_ID }}
-      ARM_SUBSCRIPTION_ID: ${{ vars.ARM_SUBSCRIPTION_ID }}
-      ARM_TENANT_ID: ${{ vars.ARM_TENANT_ID }}
-      RESOURCE_GROUP: ${{ vars.AZURE_RESOURCE_GROUP }}
-      STORAGE_ACCOUNT: ${{ vars.AZURE_STORAGE_ACCOUNT }}
-      CONTAINER_NAME: ${{ vars.STORAGE_CONTAINER_NAME }}
+      RESOURCE_GROUP: ${{ secrets.AZURE_RESOURCE_GROUP }}
+      STORAGE_ACCOUNT: ${{ secrets.AZURE_STORAGE_ACCOUNT }}
+      CONTAINER_NAME: ${{ secrets.STORAGE_CONTAINER_NAME }}
       TF_LOG: INFO
       TF_INPUT: false
 
@@ -59,17 +56,17 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v1
         with:
-          client-id: $ARM_CLIENT_ID
-          tenant-id: $ARM_TENANT_ID
-          subscription-id: $ARM_SUBSCRIPTION_ID
+          client-id: ${{ secrets.ARM_CLIENT_ID }}
+          tenant-id: ${{ secrets.ARM_TENANT_ID }}
+          subscription-id: ${{ secrets.ARM_SUBSCRIPTION_ID }}
           # allow-no-subscriptions: true
 
       # - name: Echo TFVARS
       #   run: echo "${{ secrets.TFVARS }}" > .env
-      - name: Set up Terraform
-        uses: hashicorp/setup-terraform@v3
-        with:
-          terraform_version: latest
+      # - name: Set up Terraform
+      #   uses: hashicorp/setup-terraform@v3
+      #   with:
+      #     terraform_version: latest
 
       # - name: Terraform Init
       #   run: terraform init -backend-config="resource_group_name=${{ secrets.AZURE_RESOURCE_GROUP }}" -backend-config="storage_account_name=${{ secrets.AZURE_STORAGE_ACCOUNT }}" -backend-config="container_name=${{ secrets.AZURE_CONTAINER_NAME }}"
