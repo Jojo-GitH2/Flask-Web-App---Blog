@@ -70,20 +70,21 @@ jobs:
           terraform_version: latest
 
       - name: Terraform Init
-        run: terraform init -backend-config="storage_account_name=$STORAGE_ACCOUNT" -backend-config="container_name=$CONTAINER_NAME" -backend-config="resource_group_name=$RESOURCE_GROUP" -backend-config="access_key=$STORAGE_ACCESS_KEY" 
+        run: terraform init -backend-config="storage_account_name=$STORAGE_ACCOUNT" -backend-config="container_name=$CONTAINER_NAME" -backend-config="resource_group_name=$RESOURCE_GROUP" -backend-config="access_key=$STORAGE_ACCESS_KEY"
 
       - name: Terraform fmt
         id: fmt
         run: terraform fmt -check -recursive
         continue-on-error: true
 
-      # - name: Terraform Validate
-      #   id: validate
-      #   run: terraform validate -no-color
+      - name: Terraform Validate
+        id: validate
+        if: success() || failure()
+        run: terraform validate -no-color
 
-      # - name: Terraform Plan
-      #   id: plan
-      #   run: terraform plan -var 'docker_image=${{ secrets.DOCKER_USERNAME }}/flaskblog-app:${{ github.sha }}' -input=false -var-file=./.env
-      # run: terraform plan -no-color -out=plan.tfplan -var="docker_image=jojodocker10/flaskblog-app:latest" -input=false --var-file=./.env
+      - name: Terraform Plan
+        id: plan
+        # run: terraform plan -var 'docker_image=${{ secrets.DOCKER_USERNAME }}/flaskblog-app:${{ github.sha }}' -var "resource_group_name=$RESOURCE_GROUP" -input=false -out=plan.tfplan -no-color
+        run: terraform plan -no-color -out=plan.tfplan -var="docker_image=jojodocker10/flaskblog-app:latest" -input=false -var "resource_group_name=$RESOURCE_GROUP"
       # - name: Terraform Apply
       #   run: terraform apply -auto-approve
