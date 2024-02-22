@@ -46,6 +46,7 @@ jobs:
       RESOURCE_GROUP: ${{ secrets.AZURE_RESOURCE_GROUP }}
       STORAGE_ACCOUNT: ${{ secrets.AZURE_STORAGE_ACCOUNT }}
       CONTAINER_NAME: ${{ secrets.STORAGE_CONTAINER_NAME }}
+      STORAGE_ACCESS_KEY: ${{ secrets.STORAGE_ACCESS_KEY }}
       TF_LOG: INFO
       TF_INPUT: false
 
@@ -69,7 +70,7 @@ jobs:
           terraform_version: latest
 
       - name: Terraform Init
-        run: terraform init -backend-config="storage_account_name=$STORAGE_ACCOUNT" -backend-config="container_name=$CONTAINER_NAME" -backend-config="resource_group_name=$RESOURCE_GROUP"
+        run: terraform init -backend-config="storage_account_name=$STORAGE_ACCOUNT" -backend-config="container_name=$CONTAINER_NAME" -backend-config="resource_group_name=$RESOURCE_GROUP" -backend-config="access_key=$STORAGE_ACCESS_KEY" 
 
       # - name: Terraform fmt
       #   id: fmt
