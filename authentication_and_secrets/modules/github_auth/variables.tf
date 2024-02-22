@@ -25,12 +25,10 @@ variable "storage_account" {
 variable "client_id" {
   description = "The client ID of the user assigned identity"
   type        = string
-  sensitive   = true
 
 }
 
 variable "tenant_id" {
   description = "The tenant ID of the user assigned identity"
   type        = string
-  sensitive   = true
 }

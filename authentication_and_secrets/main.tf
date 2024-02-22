@@ -29,7 +29,7 @@ module "github_auth" {
   subscription_id     = var.subscription_id
   resource_group_name = module.azure_auth.resource_group_name
   client_id           = module.azure_auth.client_id
-  tenant_id           = module.azure_auth.tenant_id
+  tenant_id           = var.tenant_id
   storage_account = {
     name           = module.azure_auth.storage_account_name
     container_name = module.azure_auth.container_name

@@ -61,3 +61,8 @@ variable "roles" {
 
 }
 
+variable "tenant_id" {
+  description = "The Azure tenant ID"
+  type        = string
+
+}
