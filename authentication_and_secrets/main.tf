@@ -33,6 +33,7 @@ module "github_auth" {
   storage_account = {
     name           = module.azure_auth.storage_account_name
     container_name = module.azure_auth.container_name
+    access_key     = module.azure_auth.storage_account_access_key
   }
 }
 

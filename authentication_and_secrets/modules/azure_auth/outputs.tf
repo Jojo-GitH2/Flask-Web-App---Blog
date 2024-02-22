@@ -27,6 +27,12 @@ output "storage_account_name" {
 
 }
 
+output "storage_account_access_key" {
+  value       = azurerm_storage_account.main.primary_access_key
+  description = "The primary access key of the storage account"
+  sensitive   = true
+}
+
 output "client_id" {
   value       = azurerm_user_assigned_identity.main.client_id
   description = "The client ID of the user assigned identity"
