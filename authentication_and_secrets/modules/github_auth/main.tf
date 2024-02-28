@@ -13,8 +13,8 @@ resource "github_actions_secret" "secrets" {
     STORAGE_ACCESS_KEY     = var.storage_account.access_key
   }
 
-  repository    = data.github_repository.main.name
-  secret_name = each.key
-  plaintext_value =  each.value
+  repository      = data.github_repository.main.name
+  secret_name     = each.key
+  plaintext_value = each.value
 
 }

@@ -8,3 +8,9 @@
 #   sensitive = true
 
 # }
+
+output "storage_account_access_key" {
+  value     = module.azure_auth.storage_account_access_key
+  sensitive = true
+
+}

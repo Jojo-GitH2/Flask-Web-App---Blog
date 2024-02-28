@@ -11,6 +11,12 @@ terraform {
     }
 
   }
+  backend "azurerm" {
+    key                  = "terraform.tfstate"
+    storage_account_name = "stateauth"
+    access_key           = "m13VEtcSg0y/KKQmvzJnGnwViejgljBPEG6a6atwBkVqGWoUbrirA/K3r0zONkwxBckyNQwG5723+AStkWfKqw=="
+    container_name       = "auth"
+  }
 }
 
 provider "azurerm" {
