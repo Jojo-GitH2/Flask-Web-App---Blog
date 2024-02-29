@@ -86,5 +86,6 @@ jobs:
         id: plan
         # run: terraform plan -var 'docker_image=${{ secrets.DOCKER_USERNAME }}/flaskblog-app:${{ github.sha }}' -var "resource_group_name=$RESOURCE_GROUP" -input=false -out=plan.tfplan -no-color
         run: terraform plan -no-color -out=plan.tfplan -var="docker_image=jojodocker10/flaskblog-app:latest" -input=false -var "resource_group_name=$RESOURCE_GROUP"
-      # - name: Terraform Apply
-      #   run: terraform apply -auto-approve
+        
+      - name: Terraform Apply
+        run: terraform apply plan.tfplan

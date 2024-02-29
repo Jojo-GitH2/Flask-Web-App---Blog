@@ -98,3 +98,13 @@ variable "roles" {
 
 }
 
+variable "auth" {
+  description = "The name of the resource group for the authentication and secrets"
+  type        = object({
+    resource_group_name = string
+    storage_account = object({
+      name = string
+    })
+  })
+  
+}
